@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 15.0.26124.0
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{76E76B30-9B53-48AB-8E86-81D55A168438}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sail", "src\Sail\Sail.csproj", "{27C84D24-C0B8-4C73-894B-53976879FFE4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sail.EntityFramework.Storage", "src\Sail.EntityFramework.Storage\Sail.EntityFramework.Storage.csproj", "{9CFF0353-7891-44D4-99F9-6A133BA20437}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sail.Storage", "src\Sail.Storage\Sail.Storage.csproj", "{D601AECB-5431-4705-99EE-5932B2E05609}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{27C84D24-C0B8-4C73-894B-53976879FFE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27C84D24-C0B8-4C73-894B-53976879FFE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27C84D24-C0B8-4C73-894B-53976879FFE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27C84D24-C0B8-4C73-894B-53976879FFE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CFF0353-7891-44D4-99F9-6A133BA20437}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CFF0353-7891-44D4-99F9-6A133BA20437}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CFF0353-7891-44D4-99F9-6A133BA20437}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CFF0353-7891-44D4-99F9-6A133BA20437}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D601AECB-5431-4705-99EE-5932B2E05609}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D601AECB-5431-4705-99EE-5932B2E05609}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D601AECB-5431-4705-99EE-5932B2E05609}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D601AECB-5431-4705-99EE-5932B2E05609}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{27C84D24-C0B8-4C73-894B-53976879FFE4} = {76E76B30-9B53-48AB-8E86-81D55A168438}
+		{9CFF0353-7891-44D4-99F9-6A133BA20437} = {76E76B30-9B53-48AB-8E86-81D55A168438}
+		{D601AECB-5431-4705-99EE-5932B2E05609} = {76E76B30-9B53-48AB-8E86-81D55A168438}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {69E1B1AC-AFEB-4D87-BA73-6CD610891684}
+	EndGlobalSection
+EndGlobal
