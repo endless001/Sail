@@ -8,6 +8,7 @@ namespace Sail.Storage.Models
 {
    public class HttpRule
     {
+        
         public int Id { get; set; }
         public int ServiceId { get; set; }
         public int RuleType { get; set; }
