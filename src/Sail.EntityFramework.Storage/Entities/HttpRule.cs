@@ -17,7 +17,7 @@ namespace Sail.EntityFramework.Storage.Entities
         public int NeedWebsocket { get; set; }
         public int NeedStripUri { get; set; }
         public string UrlRewrite { get; set; }
-        public string HeaderTransfor { get; set; }
+        public string HeaderTransform { get; set; }
 
     }
 }
