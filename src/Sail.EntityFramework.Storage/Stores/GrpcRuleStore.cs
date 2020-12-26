@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Sail.EntityFramework.Storage.Stores
 {
-    class GrpcRuleStore : IGrpcRuleStore
+    public class GrpcRuleStore : IGrpcRuleStore
     {
         public Task<bool> CreateGrpcRuleAsync(GrpcRule model)
         {
