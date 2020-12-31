@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Sail.EntityFramework.Storage.Interfaces;
+using Sail.EntityFramework.Storage.Mappers;
 using Sail.Storage.Models;
 using Sail.Storage.Stores;
-
-
+using System.Linq;
 namespace Sail.EntityFramework.Storage.Stores
 {
     public class TenantStore : ITenantStore
@@ -22,54 +24,54 @@ namespace Sail.EntityFramework.Storage.Stores
             Logger = logger;
         }
 
-        public Task<bool> CreateTenantAsync(Tenant model)
+        public async Task<bool> CreateTenantAsync(Tenant model)
         {
-            throw new NotImplementedException();
+            await Context.Tenants.AddAsync(model.ToEntity());
+            var result = await Context.SaveChangesAsync();
+            return result > 0;
         }
 
-        public Task<bool> DeleteTenantAsync(int id)
+        public async Task<bool> DeleteTenantAsync(int id)
         {
-            throw new NotImplementedException();
+            var entity = new Tenant
+            {
+                Id =id
+            };
+            Context.Entry(entity).State = EntityState.Deleted;  
+            var result=await Context.SaveChangesAsync();
+            return result > 0;
         }
 
-        public Task<Tenant> FindTenantByIdAsync(int id)
+        public async Task<Tenant> FindTenantByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var entity= await Context.Tenants.FindAsync(id);
+            return entity.ToModel();
         }
 
-        public Task<(List<Tenant>, int)> TenantPageListAsync(int pageIndex, int pageSize)
+        public async Task<(List<Tenant>, int)> TenantPageListAsync(int pageIndex, int pageSize)
         {
-            throw new NotImplementedException();
+
+            var totalItems = await Context.Tenants
+                .CountAsync();
+
+            
+            var itemsOnPage = await Context.Tenants
+                .OrderBy(c => c.Name)
+                .Skip(pageSize * pageIndex)
+                .Take(pageSize)
+                .Select(a=>a.ToModel())
+                .ToListAsync();
+            return (itemsOnPage, totalItems);
         }
 
-        public Task<bool> UpdateTenantAsync(Tenant model)
+        public async Task<bool> UpdateTenantAsync(Tenant model)
         {
-            throw new NotImplementedException();
+
+             Context.Tenants.Update(model.ToEntity());
+             var  result= await Context.SaveChangesAsync();
+             return result > 0;
         }
 
-        Task<bool> ITenantStore.CreateTenantAsync(Tenant model)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<bool> ITenantStore.DeleteTenantAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<Tenant> ITenantStore.FindTenantByIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<(List<Tenant>, int)> ITenantStore.TenantPageListAsync(int pageIndex, int pageSize)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<bool> ITenantStore.UpdateTenantAsync(Tenant model)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

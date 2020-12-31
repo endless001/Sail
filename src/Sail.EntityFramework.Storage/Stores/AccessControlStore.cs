@@ -5,11 +5,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+using Sail.EntityFramework.Storage.Interfaces;
 
 namespace Sail.EntityFramework.Storage.Stores
 {
     public class AccessControlStore : IAccessControlStore
-    {
+    {   
+        protected readonly IConfigurationDbContext Context;
+
+        protected readonly ILogger<AccessControlStore> Logger;
+
+        public AccessControlStore(IConfigurationDbContext context, ILogger<AccessControlStore> logger)
+        {
+            Context = context ?? throw new ArgumentNullException(nameof(context));
+            Logger = logger;
+        }
+        
         public Task<(List<AccessControl>, int)> AccessControlPageListAsync(int pageIndex, int pageSize)
         {
             throw new NotImplementedException();

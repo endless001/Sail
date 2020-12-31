@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Sail.EntityFramework.Storage.Interfaces;
 using Sail.EntityFramework.Storage.Options;
 using Sail.EntityFramework.Storage.Entities;
@@ -31,6 +33,16 @@ namespace Sail.EntityFramework.Storage.DbContexts
         public DbSet<Service> Services { get; set; }
         public DbSet<TcpRule> TcpRules { get; set; }
         public DbSet<Tenant> Tenants { get; set; }
+        public Task<int> SaveChangesAsync()
+        {
+            return base.SaveChangesAsync();
+        }
+
+        public  EntityEntry Entry(object entity)
+        {
+            return base.Entry(entity);
+        }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
