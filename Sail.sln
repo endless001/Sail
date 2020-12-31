@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sail.EntityFramework.Storag
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sail.Storage", "src\Sail.Storage\Sail.Storage.csproj", "{D601AECB-5431-4705-99EE-5932B2E05609}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sail.Administration", "src\Sail.Administration\Sail.Administration.csproj", "{D1A51644-47B7-4A01-99BB-BD12C11E83D1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{D601AECB-5431-4705-99EE-5932B2E05609}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D601AECB-5431-4705-99EE-5932B2E05609}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D601AECB-5431-4705-99EE-5932B2E05609}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1A51644-47B7-4A01-99BB-BD12C11E83D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1A51644-47B7-4A01-99BB-BD12C11E83D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1A51644-47B7-4A01-99BB-BD12C11E83D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1A51644-47B7-4A01-99BB-BD12C11E83D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -37,6 +43,7 @@ Global
 		{27C84D24-C0B8-4C73-894B-53976879FFE4} = {76E76B30-9B53-48AB-8E86-81D55A168438}
 		{9CFF0353-7891-44D4-99F9-6A133BA20437} = {76E76B30-9B53-48AB-8E86-81D55A168438}
 		{D601AECB-5431-4705-99EE-5932B2E05609} = {76E76B30-9B53-48AB-8E86-81D55A168438}
+		{D1A51644-47B7-4A01-99BB-BD12C11E83D1} = {76E76B30-9B53-48AB-8E86-81D55A168438}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {69E1B1AC-AFEB-4D87-BA73-6CD610891684}
