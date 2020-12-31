@@ -28,9 +28,9 @@ namespace Sail.EntityFramework.Storage.Extensions
             }
             else
             {
-                services.AddDbContext<TContext>(dbCtxBuilder =>
+                services.AddDbContext<TContext>(optionsAction=>
                 {
-                    options.ConfigureDbContext?.Invoke(dbCtxBuilder);
+                    options.ConfigureDbContext?.Invoke(optionsAction);
                 });
             }
             services.AddScoped<IConfigurationDbContext, TContext>();
