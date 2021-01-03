@@ -11,13 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ReverseProxy\" />
-    <Folder Include="FlowRate\" />
-    <Folder Include="RateLimit\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Sail.Storage\Sail.Storage.csproj" />
   </ItemGroup>
+
+
 
 </Project>
