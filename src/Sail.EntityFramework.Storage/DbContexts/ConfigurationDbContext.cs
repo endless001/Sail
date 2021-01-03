@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Sail.EntityFramework.Storage.Interfaces;
 using Sail.EntityFramework.Storage.Options;
 using Sail.EntityFramework.Storage.Entities;
+using Sail.EntityFramework.Storage.Extensions;
 
 namespace Sail.EntityFramework.Storage.DbContexts
 {
@@ -46,6 +47,7 @@ namespace Sail.EntityFramework.Storage.DbContexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.ConfigureTenantContext(_storeOptions);
             base.OnModelCreating(modelBuilder);
         }
     }
