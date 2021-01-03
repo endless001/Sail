@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Sail.Configuration.DependencyInjection;
 using Sail.EntityFramework.Storage.Extensions;
 
 namespace Sail.Administration
@@ -35,19 +36,21 @@ namespace Sail.Administration
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Sail.Administration", Version = "v1" });
             });
-            
-            //services.AddConfigurationStore(options =>
-            //{
-            //    var connectionString = Configuration["ConnectionString"];
-            //    var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
-                
-            //    options.ConfigureDbContext = builder => builder.UseMySQL(connectionString,
-            //         optionsBuilder =>
-            //        {
-            //            optionsBuilder.MigrationsAssembly(migrationsAssembly);
-                      
-            //        });
-            //});
+
+            services.
+                 AddSail().
+                 AddConfigurationStore(options =>
+            {
+                var connectionString = Configuration["ConnectionString"];
+                var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
+
+                options.ConfigureDbContext = builder => builder.UseMySQL(connectionString,
+                     optionsBuilder =>
+                    {
+                        optionsBuilder.MigrationsAssembly(migrationsAssembly);
+
+                    });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
