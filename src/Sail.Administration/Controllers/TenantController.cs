@@ -20,10 +20,9 @@ namespace Sail.Administration.Controllers
         }
         
         [HttpPost]
-        public async Task<IActionResult> CreateTenant()
+        public async Task<IActionResult> CreateTenant([FromBody] Tenant tenant)
         {
-            var model = new Tenant();
-            await _tenantStore.CreateTenantAsync(model);
+            await _tenantStore.CreateTenantAsync(tenant);
             return Ok();
         }
         

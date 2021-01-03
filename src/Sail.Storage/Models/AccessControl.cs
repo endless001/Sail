@@ -14,7 +14,7 @@ namespace Sail.Storage.Models
         public string BlackList { get; set; }
         public string WhiteList { get; set; }
         public string WhiteHostName { get; set; }
-        public int ClientipFlowLimit { get; set; }
+        public int ClientIpFlowLimit { get; set; }
         public int ServiceFlowLimit { get; set; }
 
     }

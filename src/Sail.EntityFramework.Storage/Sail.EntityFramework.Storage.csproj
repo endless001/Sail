@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Sail.Storage\Sail.Storage.csproj" />
+    <ProjectReference Include="..\Sail\Sail.csproj" />
   </ItemGroup>
 
 </Project>
