@@ -36,20 +36,14 @@ namespace Sail.Administration
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Sail.Administration", Version = "v1" });
             });
-
-            services.
-                 AddSail().
-                 AddConfigurationStore(options =>
+            
+            services.AddSail().AddConfigurationStore(options =>
             {
-                var connectionString = Configuration["ConnectionString"];
+                var connectionString = Configuration.GetValue<string>("ConnectionString");
                 var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
 
                 options.ConfigureDbContext = builder => builder.UseMySQL(connectionString,
-                     optionsBuilder =>
-                    {
-                        optionsBuilder.MigrationsAssembly(migrationsAssembly);
-
-                    });
+                    optionsBuilder => { optionsBuilder.MigrationsAssembly(migrationsAssembly); });
             });
         }
 

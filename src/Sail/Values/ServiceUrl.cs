@@ -8,8 +8,8 @@ namespace Sail.Values
 {
     public class ServiceUrl
     {
-        public string DownstreamHost { get; }
-        public int DownstreamPort { get; }
+        public string DownstreamHost { get;  }
+        public int DownstreamPort { get;  }
         public string Scheme { get; }
         public ServiceUrl(string downstreamHost,int downstreamPort)
         {
