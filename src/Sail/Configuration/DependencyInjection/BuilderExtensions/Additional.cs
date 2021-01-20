@@ -1,4 +1,5 @@
-﻿using Sail.Storage.Stores;
+﻿using Microsoft.Extensions.Configuration;
+using Sail.Storage.Stores;
 using Sail.Configuration.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
@@ -18,9 +19,9 @@ namespace Microsoft.Extensions.DependencyInjection
             return builder;
         }
         
-        public static ISailBuilder AddProxy(this ISailBuilder builder)
+        public static ISailBuilder AddReverseProxy(this ISailBuilder builder,IConfiguration configuration)
         {
-            //builder.Services.Configure<RedisConfig>(configuration);
+            builder.Services.Configure<RedisConfig>(configuration);
             
             builder.Services.AddSingleton<ConnectionMultiplexer>(sp =>
             {
