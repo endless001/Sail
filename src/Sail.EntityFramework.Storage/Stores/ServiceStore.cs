@@ -5,34 +5,70 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using Sail.EntityFramework.Storage.Interfaces;
+using Sail.EntityFramework.Storage.Mappers;
 namespace Sail.EntityFramework.Storage.Stores
 {
     public class ServiceStore : IServiceStore
     {
-        public Task<bool> CreateServiceAsync(Service model)
+        
+        protected readonly IConfigurationDbContext Context;
+
+        protected readonly ILogger<ServiceStore> Logger;
+
+        public ServiceStore(IConfigurationDbContext context, ILogger<ServiceStore> logger)
         {
-            throw new NotImplementedException();
+            Context = context ?? throw new ArgumentNullException(nameof(context));
+            Logger = logger;
         }
 
-        public Task<bool> DeleteServiceAsync(int id)
+        
+        public async Task<bool> CreateServiceAsync(Service model)
         {
-            throw new NotImplementedException();
+            Context.Services.Add(model.ToEntity());
+            var result = await Context.SaveChangesAsync();
+            return result > 0;
         }
 
-        public Task<Service> FindServiceByIdAsync(int id)
+        public async Task<bool> DeleteServiceAsync(int id)
         {
-            throw new NotImplementedException();
+            var entity = new Service
+            {
+                Id = id
+            };
+            Context.Entry(entity).State = EntityState.Deleted;  
+            var result=await Context.SaveChangesAsync();
+            return result > 0;
         }
 
-        public Task<(List<Service>, int)> ServicePageListAsync(int pageIndex, int pageSize)
+        public async Task<Service> FindServiceByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var entity= await Context.Services.FindAsync(id);
+            return entity.ToModel();
         }
 
-        public Task<bool> UpdateServiceAsync(Service model)
+        public async Task<(List<Service>, int)> ServicePageListAsync(int pageIndex, int pageSize)
         {
-            throw new NotImplementedException();
+            var totalItems = await Context.Services
+                .CountAsync();
+
+            
+            var itemsOnPage = await Context.Services
+                .OrderBy(c => c.CreateTime)
+                .Skip(pageSize * pageIndex)
+                .Take(pageSize)
+                .Select(a=>a.ToModel())
+                .ToListAsync();
+            return (itemsOnPage, totalItems);
+        }
+
+        public async Task<bool> UpdateServiceAsync(Service model)
+        {
+            Context.Services.Update(model.ToEntity());
+            var  result= await Context.SaveChangesAsync();
+            return result > 0;
         }
     }
 }

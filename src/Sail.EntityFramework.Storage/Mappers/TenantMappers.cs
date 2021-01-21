@@ -17,9 +17,9 @@ namespace Sail.EntityFramework.Storage.Mappers
             return Mapper.Map<Tenant>(entity);
         }
 
-        public static Entities.Tenant ToEntity(this Tenant entity)
+        public static Entities.Tenant ToEntity(this Tenant model)
         {
-            return Mapper.Map<Entities.Tenant>(entity);
+            return Mapper.Map<Entities.Tenant>(model);
         }
 
     }

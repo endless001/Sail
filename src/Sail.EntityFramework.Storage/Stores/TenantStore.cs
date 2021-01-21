@@ -56,7 +56,7 @@ namespace Sail.EntityFramework.Storage.Stores
 
             
             var itemsOnPage = await Context.Tenants
-                .OrderBy(c => c.Name)
+                .OrderBy(c => c.CreateTime)
                 .Skip(pageSize * pageIndex)
                 .Take(pageSize)
                 .Select(a=>a.ToModel())

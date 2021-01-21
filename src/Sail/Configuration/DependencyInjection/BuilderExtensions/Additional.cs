@@ -12,6 +12,7 @@ namespace Microsoft.Extensions.DependencyInjection
             builder.Services.TryAddTransient(typeof(T));
             return builder;
         }
+ 
        
     }
 }

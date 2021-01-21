@@ -5,11 +5,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+using Sail.EntityFramework.Storage.Interfaces;
 
 namespace Sail.EntityFramework.Storage.Stores
 {
     public class HttpRuleStore : IHttpRuleStore
     {
+        protected readonly IConfigurationDbContext Context;
+
+        protected readonly ILogger<HttpRuleStore> Logger;
+        
         public Task<bool> CreateHttpRuleAsync(HttpRule model)
         {
             throw new NotImplementedException();

@@ -10,6 +10,7 @@ namespace Sail.EntityFramework.Storage.Interfaces
     public interface IConfigurationDbContext:IDisposable
     {
         DbSet<Tenant> Tenants { get; set; }
+        DbSet<Service> Services { get; set; }
         Task<int> SaveChangesAsync();
         EntityEntry Entry(object entity);
     }
