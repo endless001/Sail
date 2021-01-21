@@ -16,6 +16,10 @@
     <ProjectReference Include="..\Sail.Storage\Sail.Storage.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="RateLimit" />
+  </ItemGroup>
+
 
 
 </Project>
