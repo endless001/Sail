@@ -22,13 +22,13 @@ namespace Sail.Configuration
         private readonly IDatabase _database;
         private volatile  StoreConfig _snapshot;
         private CancellationTokenSource _changeToken;
-        
-        public  StoreConfigProvider(ILogger<StoreConfigProvider> logger,ConnectionMultiplexer redis)
+
+        public StoreConfigProvider(ILogger<StoreConfigProvider> logger, ConnectionMultiplexer redis)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _redis = redis;
             _database = redis.GetDatabase();
-            
+
         }
 
         public IProxyConfig GetConfig()
@@ -53,7 +53,7 @@ namespace Sail.Configuration
                 {
                     snapshot.Clusters.Add(CreateCluster());
                 }
-
+                
                 foreach (var route in routes)
                 {
                     snapshot.Routes.Add(CreateRoute());
