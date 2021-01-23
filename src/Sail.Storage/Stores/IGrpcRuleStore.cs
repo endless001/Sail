@@ -13,6 +13,6 @@ namespace Sail.Storage.Stores
         Task<bool> CreateGrpcRuleAsync(GrpcRule model);
         Task<bool> UpdateGrpcRuleAsync(GrpcRule model);
         Task<bool> DeleteGrpcRuleAsync(int id);
-        Task<(List<GrpcRule>, int)> GrpcRulePageListAsync(int pageIndex, int pageSize);
+        Task<(List<GrpcRule>, int)> PageListGrpcRuleAsync(int pageIndex, int pageSize);
     }
 }

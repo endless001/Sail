@@ -11,6 +11,7 @@ namespace Sail.EntityFramework.Storage.Interfaces
     {
         DbSet<Tenant> Tenants { get; set; }
         DbSet<Service> Services { get; set; }
+        DbSet<AccessControl> AccessControls { get; set; }
         Task<int> SaveChangesAsync();
         EntityEntry Entry(object entity);
     }

@@ -5,8 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Sail.EntityFramework.Storage.Interfaces;
+using Sail.EntityFramework.Storage.Mappers;
 
 namespace Sail.EntityFramework.Storage.Stores
 {
@@ -22,29 +24,51 @@ namespace Sail.EntityFramework.Storage.Stores
             Logger = logger;
         }
         
-        public Task<(List<AccessControl>, int)> AccessControlPageListAsync(int pageIndex, int pageSize)
+        public async Task<(List<AccessControl>, int)> PageListAccessControlAsync(int pageIndex, int pageSize)
         {
-            throw new NotImplementedException();
+            var totalItems = await Context.AccessControls
+                .CountAsync();
+
+            
+            var itemsOnPage = await Context.AccessControls
+                .OrderBy(c => c.Id)
+                .Skip(pageSize * pageIndex)
+                .Take(pageSize)
+                .Select(a=>a.ToModel())
+                .ToListAsync();
+            return (itemsOnPage, totalItems);
         }
 
-        public Task<bool> CreateAccessControlAsync(AccessControl model)
+        public async Task<bool> CreateAccessControlAsync(AccessControl model)
         {
-            throw new NotImplementedException();
+             
+            await Context.AccessControls.AddAsync(model.ToEntity());
+            var result = await Context.SaveChangesAsync();
+            return result > 0;
         }
 
-        public Task<bool> DeleteAccessControlAsync(int id)
+        public async Task<bool> DeleteAccessControlAsync(int id)
         {
-            throw new NotImplementedException();
+            var entity = new Entities.AccessControl
+            {
+                Id =id
+            };
+            Context.Entry(entity).State = EntityState.Deleted;  
+            var result=await Context.SaveChangesAsync();
+            return result > 0;
         }
 
-        public Task<AccessControl> FindAccessControlByIdAsync(int id)
+        public async Task<AccessControl> FindAccessControlByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var entity= await Context.AccessControls.FindAsync(id);
+            return entity.ToModel();
         }
 
-        public Task<bool> UpdateAccessControlAsync(AccessControl model)
+        public async Task<bool> UpdateAccessControlAsync(AccessControl model)
         {
-            throw new NotImplementedException();
+            Context.AccessControls.Update(model.ToEntity());
+            var  result= await Context.SaveChangesAsync();
+            return result > 0;
         }
     }
 }

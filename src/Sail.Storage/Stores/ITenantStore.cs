@@ -13,6 +13,6 @@ namespace Sail.Storage.Stores
         Task<bool> CreateTenantAsync(Tenant model);
         Task<bool> UpdateTenantAsync(Tenant model);
         Task<bool> DeleteTenantAsync(int id);
-        Task<(List<Tenant>, int)> TenantPageListAsync(int pageIndex, int pageSize);
+        Task<(List<Tenant>, int)> PageListTenantAsync(int pageIndex, int pageSize);
     }
 }

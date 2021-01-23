@@ -18,7 +18,7 @@ namespace Sail.EntityFramework.Storage.Stores
         
         public Task<bool> CreateHttpRuleAsync(HttpRule model)
         {
-            throw new NotImplementedException();
+            throw new Exception();
         }
 
         public Task<bool> DeleteHttpRuleAsync(int id)
@@ -31,7 +31,7 @@ namespace Sail.EntityFramework.Storage.Stores
             throw new NotImplementedException();
         }
 
-        public Task<(List<HttpRule>, int)> HttpRulePageListAsync(int pageIndex, int pageSize)
+        public Task<(List<HttpRule>, int)> PageListHttpRuleAsync(int pageIndex, int pageSize)
         {
             throw new NotImplementedException();
         }

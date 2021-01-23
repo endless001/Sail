@@ -27,14 +27,14 @@ namespace Sail.EntityFramework.Storage.Stores
         
         public async Task<bool> CreateServiceAsync(Service model)
         {
-            Context.Services.Add(model.ToEntity());
+            await Context.Services.AddAsync(model.ToEntity());
             var result = await Context.SaveChangesAsync();
             return result > 0;
         }
 
         public async Task<bool> DeleteServiceAsync(int id)
         {
-            var entity = new Service
+            var entity = new Entities.Service
             {
                 Id = id
             };
@@ -49,7 +49,7 @@ namespace Sail.EntityFramework.Storage.Stores
             return entity.ToModel();
         }
 
-        public async Task<(List<Service>, int)> ServicePageListAsync(int pageIndex, int pageSize)
+        public async Task<(List<Service>, int)> PageListServiceAsync(int pageIndex, int pageSize)
         {
             var totalItems = await Context.Services
                 .CountAsync();

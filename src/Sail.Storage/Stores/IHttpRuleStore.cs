@@ -13,6 +13,6 @@ namespace Sail.Storage.Stores
         Task<bool> CreateHttpRuleAsync(HttpRule model);
         Task<bool> UpdateHttpRuleAsync(HttpRule model);
         Task<bool> DeleteHttpRuleAsync(int id);
-        Task<(List<HttpRule>, int)> HttpRulePageListAsync(int pageIndex, int pageSize);
+        Task<(List<HttpRule>, int)> PageListHttpRuleAsync(int pageIndex, int pageSize);
     }
 }

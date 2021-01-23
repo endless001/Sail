@@ -25,7 +25,7 @@ namespace Sail.EntityFramework.Storage.Stores
             throw new NotImplementedException();
         }
 
-        public Task<(List<GrpcRule>, int)> GrpcRulePageListAsync(int pageIndex, int pageSize)
+        public Task<(List<GrpcRule>, int)> PageListGrpcRuleAsync(int pageIndex, int pageSize)
         {
             throw new NotImplementedException();
         }

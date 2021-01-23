@@ -33,7 +33,7 @@ namespace Sail.EntityFramework.Storage.Stores
 
         public async Task<bool> DeleteTenantAsync(int id)
         {
-            var entity = new Tenant
+            var entity = new Entities.Tenant
             {
                 Id =id
             };
@@ -48,7 +48,7 @@ namespace Sail.EntityFramework.Storage.Stores
             return entity.ToModel();
         }
 
-        public async Task<(List<Tenant>, int)> TenantPageListAsync(int pageIndex, int pageSize)
+        public async Task<(List<Tenant>, int)> PageListTenantAsync(int pageIndex, int pageSize)
         {
 
             var totalItems = await Context.Tenants

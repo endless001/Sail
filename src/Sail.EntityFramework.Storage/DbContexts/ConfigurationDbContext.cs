@@ -31,6 +31,7 @@ namespace Sail.EntityFramework.Storage.DbContexts
         public DbSet<AccessControl> AccessControls { get; set; }
         public DbSet<GrpcRule> GrpcRules { get; set; }
         public DbSet<HttpRule> HttpRules { get; set; }
+        
         public DbSet<Service> Services { get; set; }
         public DbSet<TcpRule> TcpRules { get; set; }
         public DbSet<Tenant> Tenants { get; set; }

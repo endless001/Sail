@@ -22,8 +22,8 @@ namespace Sail.Administration.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateTenant([FromBody] Tenant tenant)
         {
-            await _tenantStore.CreateTenantAsync(tenant);
-            return Ok();
+            var result = await _tenantStore.CreateTenantAsync(tenant);
+            return Ok(result);
         }
         
         [HttpGet]

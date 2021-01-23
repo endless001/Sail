@@ -13,7 +13,7 @@ namespace Sail.Storage.Stores
         Task<bool> CreateServiceAsync(Service model);
         Task<bool> UpdateServiceAsync(Service model);
         Task<bool> DeleteServiceAsync(int id);
-        Task<(List<Service>, int)> ServicePageListAsync(int pageIndex, int pageSize);
+        Task<(List<Service>, int)> PageListServiceAsync(int pageIndex, int pageSize);
 
     }
 }
