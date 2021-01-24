@@ -37,13 +37,17 @@ namespace Sail.Administration
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Sail.Administration", Version = "v1" });
             });
             
-            services.AddSail().AddConfigurationStore(options =>
-            {
-                var connectionString = Configuration.GetValue<string>("ConnectionString");
-                var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
+            var connectionString = Configuration.GetValue<string>("ConnectionString");
+            var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
 
+            services.AddConfigurationDbContext(options =>
+            {
+          
                 options.ConfigureDbContext = builder => builder.UseMySQL(connectionString,
-                    optionsBuilder => { optionsBuilder.MigrationsAssembly(migrationsAssembly); });
+                    sqlOptions =>
+                    {
+                        sqlOptions.MigrationsAssembly(migrationsAssembly);
+                    });
             });
         }
 

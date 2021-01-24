@@ -16,7 +16,10 @@ namespace Sail.EntityFramework.Storage.Extensions
 
         public static void ConfigureTenantContext(this ModelBuilder modelBuilder, ConfigurationStoreOptions storeOptions)
         {
-            if (!string.IsNullOrWhiteSpace(storeOptions.DefaultSchema)) modelBuilder.HasDefaultSchema(storeOptions.DefaultSchema);
+            if (!string.IsNullOrWhiteSpace(storeOptions.DefaultSchema))
+            {
+                modelBuilder.HasDefaultSchema(storeOptions.DefaultSchema);
+            }
 
            
         }

@@ -16,13 +16,15 @@ namespace Sail.Administration.Controllers
             _logger = logger;
             _serviceStore = serviceStore;
         }
-
+        
+        [HttpGet]
         public async Task<IActionResult> PageListService(int pageIndex,int pageSize)
         {
             var result = await _serviceStore.PageListServiceAsync(pageIndex, pageSize);
              return Ok(result);
         }
-
+        
+        [HttpPost]
         public async Task<IActionResult> CreateService([FromBody]Service service)
         {
             var result = await _serviceStore.CreateServiceAsync(service);
@@ -35,7 +37,8 @@ namespace Sail.Administration.Controllers
             var result = await _serviceStore.FindServiceByIdAsync(id);
             return Ok();
         }
-
+        
+        [HttpDelete]
         public async Task<IActionResult> DeleteService(int id)
         {
             var result = await _serviceStore.DeleteServiceAsync(id);

@@ -19,13 +19,13 @@ namespace Sail.EntityFramework.Storage.Extensions
             return builder.AddConfigurationStore<ConfigurationDbContext>(storeOptionsAction);
         }
 
-        public static ISailBuilder AddConfigurationStore<TContext>(
+        private static ISailBuilder AddConfigurationStore<TContext>(
             this ISailBuilder builder,
             Action<ConfigurationStoreOptions> storeOptionsAction = null)
             where TContext : DbContext, IConfigurationDbContext
-        {
-            builder.AddTenantStore<TenantStore>();
+        { 
             builder.Services.AddConfigurationDbContext<TContext>(storeOptionsAction);
+            builder.AddTenantStore<TenantStore>();
             
             return builder;
         }

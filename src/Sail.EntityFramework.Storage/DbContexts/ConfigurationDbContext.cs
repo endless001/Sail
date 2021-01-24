@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -9,11 +10,14 @@ using Sail.EntityFramework.Storage.Extensions;
 
 namespace Sail.EntityFramework.Storage.DbContexts
 {
-    public class ConfigurationDbContext :ConfigurationDbContext<ConfigurationDbContext>
+    public class ConfigurationDbContext : ConfigurationDbContext<ConfigurationDbContext>
     {
-        public ConfigurationDbContext(DbContextOptions<ConfigurationDbContext> options, ConfigurationStoreOptions storeOptions)
+        public ConfigurationDbContext(
+            DbContextOptions<ConfigurationDbContext> options, 
+            ConfigurationStoreOptions storeOptions)
             : base(options, storeOptions)
         {
+            
         }
     }
 
@@ -22,12 +26,13 @@ namespace Sail.EntityFramework.Storage.DbContexts
     {
         private readonly ConfigurationStoreOptions _storeOptions;
 
-        public ConfigurationDbContext(DbContextOptions<TContext> options, ConfigurationStoreOptions storeOptions)
-            :base(options)
+        public ConfigurationDbContext(
+            DbContextOptions<TContext> options,
+            ConfigurationStoreOptions storeOptions)
+            : base((DbContextOptions) options)
         {
-            _storeOptions = storeOptions ?? throw new ArgumentNullException(nameof(storeOptions));
+            _storeOptions= storeOptions ?? throw new ArgumentNullException(nameof (storeOptions));
         }
-
         public DbSet<AccessControl> AccessControls { get; set; }
         public DbSet<GrpcRule> GrpcRules { get; set; }
         public DbSet<HttpRule> HttpRules { get; set; }
@@ -35,15 +40,10 @@ namespace Sail.EntityFramework.Storage.DbContexts
         public DbSet<Service> Services { get; set; }
         public DbSet<TcpRule> TcpRules { get; set; }
         public DbSet<Tenant> Tenants { get; set; }
-        public Task<int> SaveChangesAsync()
-        {
-            return base.SaveChangesAsync();
-        }
+        public Task<int> SaveChangesAsync() => this.SaveChangesAsync(new CancellationToken());
 
-        public  EntityEntry Entry(object entity)
-        {
-            return base.Entry(entity);
-        }
+
+        public EntityEntry Entry(object entity) => base.Entry(entity);
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

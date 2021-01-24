@@ -19,6 +19,13 @@ namespace Sail.Administration.Controllers
             _tenantStore = tenantStore;
         }
         
+        [HttpGet]
+        public async Task<IActionResult> PageTenant(int pageIndex,int pageSize)
+        {
+            var result = await _tenantStore.PageListTenantAsync(pageIndex, pageSize);
+            return Ok(result);
+        }
+        
         [HttpPost]
         public async Task<IActionResult> CreateTenant([FromBody] Tenant tenant)
         {

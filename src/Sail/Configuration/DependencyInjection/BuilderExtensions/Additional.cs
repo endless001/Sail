@@ -10,6 +10,7 @@ namespace Microsoft.Extensions.DependencyInjection
             where T : class, ITenantStore
         {
             builder.Services.TryAddTransient(typeof(T));
+            builder.Services.AddTransient<ITenantStore,T>();
             return builder;
         }
  
