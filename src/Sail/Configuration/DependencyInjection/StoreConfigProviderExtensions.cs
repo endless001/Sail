@@ -9,15 +9,13 @@ namespace Sail.Configuration.DependencyInjection
 {
     public static class StoreConfigProviderExtensions
     {
-        public static IReverseProxyBuilder  LoadFromStore(this IReverseProxyBuilder  builder,IConfiguration configuration)
+        public static IReverseProxyBuilder  LoadFromStore(this IReverseProxyBuilder  builder,string connectionString)
         {
-            builder.Services.Configure<RedisConfig>(configuration.GetSection("RedisConfig"));
             
             builder.Services.AddSingleton<ConnectionMultiplexer>(sp =>
             {
-                var redisConfig = sp.GetRequiredService<IOptions<RedisConfig>>().Value;
-                var configuration = ConfigurationOptions.Parse(redisConfig.ConnectionString, true);
-                
+          
+                var configuration = ConfigurationOptions.Parse(connectionString, true);
                 configuration.ResolveDns = true;
 
                 return ConnectionMultiplexer.Connect(configuration);

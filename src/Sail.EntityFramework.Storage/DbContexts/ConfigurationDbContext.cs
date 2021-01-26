@@ -12,12 +12,9 @@ namespace Sail.EntityFramework.Storage.DbContexts
 {
     public class ConfigurationDbContext : ConfigurationDbContext<ConfigurationDbContext>
     {
-        public ConfigurationDbContext(
-            DbContextOptions<ConfigurationDbContext> options, 
-            ConfigurationStoreOptions storeOptions)
+        public ConfigurationDbContext(DbContextOptions<ConfigurationDbContext> options, ConfigurationStoreOptions storeOptions)
             : base(options, storeOptions)
         {
-            
         }
     }
 
@@ -26,13 +23,12 @@ namespace Sail.EntityFramework.Storage.DbContexts
     {
         private readonly ConfigurationStoreOptions _storeOptions;
 
-        public ConfigurationDbContext(
-            DbContextOptions<TContext> options,
-            ConfigurationStoreOptions storeOptions)
-            : base((DbContextOptions) options)
+        public ConfigurationDbContext(DbContextOptions<TContext> options, ConfigurationStoreOptions storeOptions)
+            : base(options)
         {
-            _storeOptions= storeOptions ?? throw new ArgumentNullException(nameof (storeOptions));
+            _storeOptions = storeOptions ?? throw new ArgumentNullException(nameof(storeOptions));
         }
+
         public DbSet<AccessControl> AccessControls { get; set; }
         public DbSet<GrpcRule> GrpcRules { get; set; }
         public DbSet<HttpRule> HttpRules { get; set; }

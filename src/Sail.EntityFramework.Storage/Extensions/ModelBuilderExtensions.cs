@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Sail.EntityFramework.Storage.Options;
 using Microsoft.EntityFrameworkCore;
+using Sail.Storage.Models;
 
 
 namespace Sail.EntityFramework.Storage.Extensions
@@ -21,6 +22,10 @@ namespace Sail.EntityFramework.Storage.Extensions
                 modelBuilder.HasDefaultSchema(storeOptions.DefaultSchema);
             }
 
+            modelBuilder.Entity<Tenant>(secret =>
+            {
+                secret.ToTable(storeOptions.Tenant);
+            });
            
         }
     }

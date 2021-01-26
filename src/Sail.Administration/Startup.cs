@@ -38,16 +38,10 @@ namespace Sail.Administration
             });
             
             var connectionString = Configuration.GetValue<string>("ConnectionString");
-            var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
 
-            services.AddConfigurationDbContext(options =>
-            {
-          
-                options.ConfigureDbContext = builder => builder.UseMySQL(connectionString,
-                    sqlOptions =>
-                    {
-                        sqlOptions.MigrationsAssembly(migrationsAssembly);
-                    });
+            services.AddConfigurationDbContext(options => {
+                options.ConfigureDbContext = b =>
+                    b.UseSqlServer(connectionString, dbOpts => dbOpts.MigrationsAssembly(typeof(Startup).Assembly.FullName));
             });
         }
 

@@ -9,7 +9,8 @@ namespace Sail.EntityFramework.Storage.Extensions
 {
     public static class SailEntityFrameworkBuilderExtensions
     {
-        public static IServiceCollection AddConfigurationDbContext(this IServiceCollection services,Action<ConfigurationStoreOptions> storeOptionsAction = null)
+        public static IServiceCollection AddConfigurationDbContext(this IServiceCollection services,
+            Action<ConfigurationStoreOptions> storeOptionsAction = null)
         {
             return services.AddConfigurationDbContext<ConfigurationDbContext>(storeOptionsAction);
         }
@@ -28,15 +29,14 @@ namespace Sail.EntityFramework.Storage.Extensions
             }
             else
             {
-                services.AddDbContext<TContext>(optionsAction=>
+                services.AddDbContext<TContext>(dbCtxBuilder =>
                 {
-                    options.ConfigureDbContext?.Invoke(optionsAction);
+                    options.ConfigureDbContext?.Invoke(dbCtxBuilder);
                 });
             }
             services.AddScoped<IConfigurationDbContext, TContext>();
 
             return services;
         }
-        
     }
 }
