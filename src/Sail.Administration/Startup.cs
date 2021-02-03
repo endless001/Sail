@@ -14,7 +14,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Sail.Configuration.DependencyInjection;
-using Sail.EntityFramework.Storage.Extensions;
+using Sail.EntityFramework.Storage;
 
 namespace Sail.Administration
 {
@@ -41,8 +41,10 @@ namespace Sail.Administration
 
             services.AddConfigurationDbContext(options => {
                 options.ConfigureDbContext = b =>
-                    b.UseSqlServer(connectionString, dbOpts => dbOpts.MigrationsAssembly(typeof(Startup).Assembly.FullName));
+                    b.UseSqlServer(connectionString, dbOpts => 
+                        dbOpts.MigrationsAssembly(typeof(Startup).Assembly.FullName));
             });
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

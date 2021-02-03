@@ -12,5 +12,6 @@ namespace Sail.EntityFramework.Storage.Options
         public string DefaultSchema { get; set; } = null;
 
         public TableConfiguration Tenant { get; set; } = new TableConfiguration("Tenant");
+        
     }
 }

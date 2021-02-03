@@ -20,6 +20,7 @@ namespace Sail.Administration.Controllers
         [HttpGet]
         public async Task<IActionResult> PageListService(int pageIndex,int pageSize)
         {
+            
             var result = await _serviceStore.PageListServiceAsync(pageIndex, pageSize);
              return Ok(result);
         }

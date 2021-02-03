@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Sail.Configuration.DependencyInjection;
-using Sail.EntityFramework.Storage.DbContexts;
+using Sail.EntityFramework.DbContexts;
 using Sail.EntityFramework.Storage.Interfaces;
 using Sail.EntityFramework.Storage.Options;
 using Sail.EntityFramework.Storage.Stores;

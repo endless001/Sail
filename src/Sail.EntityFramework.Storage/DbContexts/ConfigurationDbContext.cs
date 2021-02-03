@@ -8,7 +8,7 @@ using Sail.EntityFramework.Storage.Options;
 using Sail.EntityFramework.Storage.Entities;
 using Sail.EntityFramework.Storage.Extensions;
 
-namespace Sail.EntityFramework.Storage.DbContexts
+namespace Sail.EntityFramework.DbContexts
 {
     public class ConfigurationDbContext : ConfigurationDbContext<ConfigurationDbContext>
     {
@@ -37,10 +37,8 @@ namespace Sail.EntityFramework.Storage.DbContexts
         public DbSet<TcpRule> TcpRules { get; set; }
         public DbSet<Tenant> Tenants { get; set; }
         public Task<int> SaveChangesAsync() => this.SaveChangesAsync(new CancellationToken());
-
-
+        
         public EntityEntry Entry(object entity) => base.Entry(entity);
-
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

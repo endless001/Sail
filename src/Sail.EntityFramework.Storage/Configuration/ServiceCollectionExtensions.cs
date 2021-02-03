@@ -1,11 +1,11 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Sail.EntityFramework.Storage.DbContexts;
+using Sail.EntityFramework.DbContexts;
 using Sail.EntityFramework.Storage.Interfaces;
 using Sail.EntityFramework.Storage.Options;
 
-namespace Sail.EntityFramework.Storage.Extensions
+namespace Sail.EntityFramework.Storage
 {
     public static class SailEntityFrameworkBuilderExtensions
     {
