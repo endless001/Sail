@@ -14,6 +14,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Sail.Configuration.DependencyInjection;
+using Sail.EntityFramework.DbContexts;
 using Sail.EntityFramework.Storage;
 
 namespace Sail.Administration
@@ -39,10 +40,11 @@ namespace Sail.Administration
             
             var connectionString = Configuration.GetValue<string>("ConnectionString");
 
-            services.AddConfigurationDbContext(options => {
-                options.ConfigureDbContext = b =>
-                    b.UseSqlServer(connectionString, dbOpts => 
-                        dbOpts.MigrationsAssembly(typeof(Startup).Assembly.FullName));
+        
+    
+            services.AddDbContext<TestContext>(option =>
+            {
+                option.UseSqlServer(connectionString, dbOpts => dbOpts.MigrationsAssembly(typeof(Startup).Assembly.FullName));
             });
            
         }
