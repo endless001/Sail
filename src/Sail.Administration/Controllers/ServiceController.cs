@@ -39,7 +39,7 @@ namespace Sail.Administration.Controllers
         public async Task<IActionResult> FindServiceById(int id)
         {
             var result = await _serviceStore.FindServiceByIdAsync(id);
-            return Ok();
+            return Ok(result);
         }
         
         [HttpDelete]

@@ -17,11 +17,11 @@ namespace Sail.Server
         {
             var configuration = GetConfiguration();
             Log.Logger = CreateSerilogLogger(configuration);
-            var host = CreateHostBuilder(configuration, args).Build();
+            var host = CreateHostBuilder(args).Build();
             host.Run();
         }
 
-        public static IHostBuilder CreateHostBuilder(IConfiguration configuration, string[] args) =>
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .UseSerilog()
                 .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });

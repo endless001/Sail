@@ -40,14 +40,14 @@ namespace Sail.Administration.Controllers
         public async Task<IActionResult> FindTenantById(int id)
         {
             var result = await _tenantStore.FindTenantByIdAsync(id);
-            return Ok();
+            return Ok(result);
         }
         
         [HttpDelete]
         public async Task<IActionResult> DeleteTenant(int id)
         {
-            await _tenantStore.DeleteTenantAsync(id);
-            return Ok();
+            var result = await _tenantStore.DeleteTenantAsync(id);
+            return Ok(result);
         }
         
     }

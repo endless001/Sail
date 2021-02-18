@@ -38,7 +38,7 @@ namespace Sail.Administration.Controllers
         public async Task<IActionResult> FindAccessControlById(int id)
         {
             var result = await _accessControlStore.FindAccessControlByIdAsync(id);
-            return Ok();
+            return Ok(result);
         }
         
         [HttpDelete]
