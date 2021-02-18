@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Sail.EntityFramework.DbContexts;
+using Sail.EntityFramework.Storage.Options;
 using Serilog;
 
 namespace Sail.Administration
@@ -21,21 +22,16 @@ namespace Sail.Administration
         {
             var configuration = GetConfiguration();
             Log.Logger = CreateSerilogLogger(configuration);
-            //  CreateHostBuilder(configuration, args).Build().Run();
-            BuildWebHost(args).Run();
-
+            CreateHostBuilder(args).Run();
+        }
+        public static IWebHost CreateHostBuilder(string[] args)
+        {
+            return WebHost.CreateDefaultBuilder(args)
+                 .UseStartup<Startup>()
+                 .UseSerilog()
+                 .Build();
         }
 
-        public static IHostBuilder CreateHostBuilder(IConfiguration configuration, string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .UseSerilog()
-                .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
-
-
-        public static IWebHost BuildWebHost(string[] args) =>
-         WebHost.CreateDefaultBuilder(args)
-             .UseStartup<Startup>()
-             .Build();
         private static Serilog.ILogger CreateSerilogLogger(IConfiguration configuration)
         {
             return new LoggerConfiguration()

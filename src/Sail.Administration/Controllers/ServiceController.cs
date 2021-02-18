@@ -6,7 +6,9 @@ using Sail.Storage.Stores;
 
 namespace Sail.Administration.Controllers
 {
-    public class ServiceController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ServiceController : ControllerBase
     {
         private readonly ILogger<ServiceController> _logger;
         private readonly IServiceStore _serviceStore;
@@ -33,6 +35,7 @@ namespace Sail.Administration.Controllers
         }
         
         [HttpGet]
+        [Route("getServiceById")]
         public async Task<IActionResult> FindServiceById(int id)
         {
             var result = await _serviceStore.FindServiceByIdAsync(id);

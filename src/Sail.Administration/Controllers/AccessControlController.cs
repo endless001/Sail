@@ -6,7 +6,9 @@ using Sail.Storage.Stores;
 
 namespace Sail.Administration.Controllers
 {
-    public class AccessControlController:Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class AccessControlController: ControllerBase
     {
         private readonly ILogger<AccessControlController> _logger;
         private readonly IAccessControlStore _accessControlStore;
@@ -32,6 +34,7 @@ namespace Sail.Administration.Controllers
         }
         
         [HttpGet]
+        [Route("getAccessControlById")]
         public async Task<IActionResult> FindAccessControlById(int id)
         {
             var result = await _accessControlStore.FindAccessControlByIdAsync(id);

@@ -16,7 +16,7 @@ using Microsoft.OpenApi.Models;
 using Sail.Configuration.DependencyInjection;
 using Sail.EntityFramework.DbContexts;
 using Sail.EntityFramework.Storage;
-
+using Sail.EntityFramework.Storage.Extensions;
 namespace Sail.Administration
 {
     public class Startup
@@ -40,15 +40,13 @@ namespace Sail.Administration
             
             var connectionString = Configuration.GetValue<string>("ConnectionString");
 
-
-            string migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly
-                  .GetName().Name;
-
-            services.AddConfigurationDbContext(options =>
+ 
+            services.AddSail().
+                AddConfigurationStore(options =>
             {
                 options.ConfigureDbContext = b =>
                 {
-                    b.UseSqlServer(connectionString, dbOpts => dbOpts.MigrationsAssembly(migrationsAssembly));
+                    b.UseSqlServer(connectionString, dbOpts => dbOpts.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name));
                 };
             });
            

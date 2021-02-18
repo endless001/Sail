@@ -9,7 +9,9 @@ using Sail.Storage.Stores;
 
 namespace Sail.Administration.Controllers
 {
-    public class TenantController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class TenantController : ControllerBase
     {
         private readonly ILogger<TenantController> _logger;
         private readonly ITenantStore _tenantStore;
@@ -34,6 +36,7 @@ namespace Sail.Administration.Controllers
         }
         
         [HttpGet]
+        [Route("getTenantById")]
         public async Task<IActionResult> FindTenantById(int id)
         {
             var result = await _tenantStore.FindTenantByIdAsync(id);

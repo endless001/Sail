@@ -26,6 +26,8 @@ namespace Sail.EntityFramework.Storage.Extensions
         { 
             builder.Services.AddConfigurationDbContext<TContext>(storeOptionsAction);
             builder.AddTenantStore<TenantStore>();
+            builder.AddServiceStore<ServiceStore>();
+            builder.AddAccessControlStore<AccessControlStore>();
             
             return builder;
         }

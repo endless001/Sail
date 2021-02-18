@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Sail.EntityFramework.Storage\Sail.EntityFramework.Storage.csproj" />
+    <ProjectReference Include="..\Sail\Sail.csproj" />
   </ItemGroup>
 
   <ItemGroup>
