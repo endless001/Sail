@@ -33,7 +33,7 @@ namespace Sail.Configuration
 
         public IProxyConfig GetConfig()
         {
-            if (_snapshot==null)
+            if (_snapshot == null)
             {
                 UpdateSnapshot();
             }
@@ -87,7 +87,6 @@ namespace Sail.Configuration
                 LoadBalancingPolicy = LoadBalancingPolicies.Random,
                 Metadata = {},
                 HttpRequest = {},
-                
                 Destinations =
                 {
                     {"destination1", new Destination() {Address = "https://example.com"}},

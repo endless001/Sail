@@ -14,7 +14,7 @@ namespace Sail.EntityFramework.Storage
         {
             return services.AddConfigurationDbContext<ConfigurationDbContext>(storeOptionsAction);
         }
-        
+
         public static IServiceCollection AddConfigurationDbContext<TContext>(this IServiceCollection services,
             Action<ConfigurationStoreOptions> storeOptionsAction = null)
             where TContext : DbContext, IConfigurationDbContext
