@@ -46,7 +46,7 @@ namespace Sail.Administration
             {
                 options.ConfigureDbContext = b =>
                 {
-                    b.UseSqlServer(connectionString, dbOpts => dbOpts.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name));
+                    b.UseMySql(connectionString, dbOpts => dbOpts.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name));
                 };
             });
            

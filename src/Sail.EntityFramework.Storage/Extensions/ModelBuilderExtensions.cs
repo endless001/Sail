@@ -2,8 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Sail.EntityFramework.Storage.Options;
 using Microsoft.EntityFrameworkCore;
-using Sail.Storage.Models;
-
+using Sail.EntityFramework.Storage.Entities;
 
 namespace Sail.EntityFramework.Storage.Extensions
 {
@@ -26,7 +25,31 @@ namespace Sail.EntityFramework.Storage.Extensions
             {
                 secret.ToTable(storeOptions.Tenant);
             });
-           
+            modelBuilder.Entity<AccessControl>(secret =>
+            {
+                secret.ToTable(storeOptions.AccessControl);
+            });
+
+            modelBuilder.Entity<HttpRule>(secret =>
+            {
+                secret.ToTable(storeOptions.HttpRule);
+            });
+
+            modelBuilder.Entity<TcpRule>(secret =>
+            {
+                secret.ToTable(storeOptions.TcpRule);
+            });
+
+            modelBuilder.Entity<GrpcRule>(secret =>
+            {
+                secret.ToTable(storeOptions.GrpcRule);
+            });
+
+            modelBuilder.Entity<Service>(secret =>
+            {
+                secret.ToTable(storeOptions.Service);
+            });
+
         }
     }
 }

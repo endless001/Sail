@@ -35,16 +35,16 @@ namespace Sail.EntityFramework.Storage.Stores
         {
             var entity = new Entities.Tenant
             {
-                Id =id
+                Id = id
             };
-            Context.Entry(entity).State = EntityState.Deleted;  
-            var result=await Context.SaveChangesAsync();
+            Context.Entry(entity).State = EntityState.Deleted;
+            var result = await Context.SaveChangesAsync();
             return result > 0;
         }
 
         public async Task<Tenant> FindTenantByIdAsync(int id)
         {
-            var entity= await Context.Tenants.FindAsync(id);
+            var entity = await Context.Tenants.FindAsync(id);
             return entity.ToModel();
         }
 
@@ -67,9 +67,9 @@ namespace Sail.EntityFramework.Storage.Stores
         public async Task<bool> UpdateTenantAsync(Tenant model)
         {
 
-             Context.Tenants.Update(model.ToEntity());
-             var  result= await Context.SaveChangesAsync();
-             return result > 0;
+            Context.Tenants.Update(model.ToEntity());
+            var result = await Context.SaveChangesAsync();
+            return result > 0;
         }
 
        

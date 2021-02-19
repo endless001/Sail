@@ -36,7 +36,7 @@ namespace Sail.EntityFramework.DbContexts
         public DbSet<Service> Services { get; set; }
         public DbSet<TcpRule> TcpRules { get; set; }
         public DbSet<Tenant> Tenants { get; set; }
-        public Task<int> SaveChangesAsync() => this.SaveChangesAsync(new CancellationToken());
+        public Task<int> SaveChangesAsync() => base.SaveChangesAsync(new CancellationToken());
         
         public EntityEntry Entry(object entity) => base.Entry(entity);
 

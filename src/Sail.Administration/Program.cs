@@ -25,25 +25,23 @@ namespace Sail.Administration
             Log.Logger = CreateSerilogLogger(configuration);
             CreateHostBuilder(args).Build().Run();
         }
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-          Host.CreateDefaultBuilder(args)
-              .UseSerilog()
-              .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
+        private static IHostBuilder CreateHostBuilder(string[] args) =>
+              Host.CreateDefaultBuilder(args)
+                 .UseSerilog()
+                 .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
 
-        private static Serilog.ILogger CreateSerilogLogger(IConfiguration configuration)=>
+        private static Serilog.ILogger CreateSerilogLogger(IConfiguration configuration) =>
             new LoggerConfiguration()
                 .ReadFrom.Configuration(configuration)
                 .CreateLogger();
-        
 
-        private static IConfiguration GetConfiguration()
-        {
-            var builder = new ConfigurationBuilder()
+
+        private static IConfiguration GetConfiguration() =>
+              new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddEnvironmentVariables();
-            return builder.Build();
-        }
+                .AddEnvironmentVariables().Build();
+        
     }
     public class ConfigurationDbContextFactory : IDesignTimeDbContextFactory<ConfigurationDbContext>
     {
@@ -52,10 +50,10 @@ namespace Sail.Administration
             var configuration = new ConfigurationBuilder()
              .SetBasePath(Directory.GetCurrentDirectory())
              .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-             .AddEnvironmentVariables();
+             .AddEnvironmentVariables().Build();
 
             var optionsBuilder = new DbContextOptionsBuilder<ConfigurationDbContext>(); 
-            optionsBuilder.UseSqlServer("Data Source=blog.db", dbOpts => dbOpts.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name));
+            optionsBuilder.UseMySql(configuration.GetValue<string>("ConnectionString"), dbOpts => dbOpts.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name));
             var storeOptions = new ConfigurationStoreOptions();
             return new ConfigurationDbContext(optionsBuilder.Options, storeOptions);
         }

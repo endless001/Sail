@@ -28,7 +28,6 @@ namespace Sail.EntityFramework.Storage.Stores
         {
             var totalItems = await Context.AccessControls
                 .CountAsync();
-
             
             var itemsOnPage = await Context.AccessControls
                 .OrderBy(c => c.Id)
@@ -51,23 +50,23 @@ namespace Sail.EntityFramework.Storage.Stores
         {
             var entity = new Entities.AccessControl
             {
-                Id =id
+                Id = id
             };
-            Context.Entry(entity).State = EntityState.Deleted;  
-            var result=await Context.SaveChangesAsync();
+            Context.Entry(entity).State = EntityState.Deleted;
+            var result = await Context.SaveChangesAsync();
             return result > 0;
         }
 
         public async Task<AccessControl> FindAccessControlByIdAsync(int id)
         {
-            var entity= await Context.AccessControls.FindAsync(id);
+            var entity = await Context.AccessControls.FindAsync(id);
             return entity.ToModel();
         }
 
         public async Task<bool> UpdateAccessControlAsync(AccessControl model)
         {
             Context.AccessControls.Update(model.ToEntity());
-            var  result= await Context.SaveChangesAsync();
+            var result = await Context.SaveChangesAsync();
             return result > 0;
         }
     }

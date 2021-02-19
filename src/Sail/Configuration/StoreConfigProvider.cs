@@ -102,6 +102,7 @@ namespace Sail.Configuration
             {
                 RouteId = "route1",
                 ClusterId = "cluster1",
+                AuthorizationPolicy = "appkey",
                 Match =
                 {
                     Path = "{**catch-all}"
