@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace Sail.RateLimit
 {
-    class RateLimitCore
+    public class RateLimitCore
     {
+        private readonly IRateLimitCounterHandler _counterHandler;
+        private static readonly object _processLocker = new object();
+       
+        public RateLimitCore(IRateLimitCounterHandler counterHandler)
+        {
+            _counterHandler = counterHandler;
+        }
+
+
     }
 }
