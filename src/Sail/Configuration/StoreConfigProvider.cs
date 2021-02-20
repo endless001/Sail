@@ -110,6 +110,5 @@ namespace Sail.Configuration
             };
             return route;
         }
-
     }
 }

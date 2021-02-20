@@ -54,7 +54,6 @@ namespace Sail.Server
                 app.UseDeveloperExceptionPage();
             }
 
-
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
