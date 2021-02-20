@@ -11,8 +11,10 @@ using Microsoft.Extensions.Hosting;
 using Sail.Configuration.DependencyInjection;
 using Sail.Configuration;
 using Microsoft.AspNetCore.Authorization;
-using Sail.Authorization;
+using Sail.Authorization.Secret;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Sail.Authentication.Secret;
+
 
 namespace Sail.Server
 {
@@ -32,21 +34,16 @@ namespace Sail.Server
             var connectionString = Configuration.GetValue<string>("RedisConfig:ConnectionString");
             services.AddReverseProxy().LoadFromStore(connectionString);
 
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie(options =>
-                {
-                    options.Events.OnRedirectToLogin = (context) =>
-                    {
-                        context.Response.StatusCode = 401;
-                        return Task.CompletedTask;
-                    };
-                });
+            
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Secret", builder => builder.RequireAuthenticatedUser());
+                options.FallbackPolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+            });
 
+            services.AddAuthentication(SecretDefaults.AuthenticationScheme)
+                   .AddSecret();
 
-     
-            services.AddSingleton<IAuthorizationPolicyProvider, AppKeyPolicyProvider>();
-            services.AddSingleton<IAuthorizationHandler, AppKeyAuthorizationHandler>();
-           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

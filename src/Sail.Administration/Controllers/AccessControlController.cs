@@ -32,9 +32,8 @@ namespace Sail.Administration.Controllers
             var result = await _accessControlStore.CreateAccessControlAsync(accessControl);
             return Ok(result);
         }
-        
-        [HttpGet]
-        [Route("getAccessControlById")]
+
+        [HttpGet("{id}")]
         public async Task<IActionResult> FindAccessControlById(int id)
         {
             var result = await _accessControlStore.FindAccessControlByIdAsync(id);

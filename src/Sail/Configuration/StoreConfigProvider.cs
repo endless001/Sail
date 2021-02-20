@@ -85,11 +85,11 @@ namespace Sail.Configuration
             {
                 Id = "cluster1",
                 LoadBalancingPolicy = LoadBalancingPolicies.Random,
-                Metadata = {},
-                HttpRequest = {},
+                Metadata = { },
+                HttpRequest = { },
                 Destinations =
                 {
-                    {"destination1", new Destination() {Address = "https://example.com"}},
+                    {"destination1", new Destination() {Address = "https://www.cnblogs.com"}},
                     {"destination2", new Destination() {Address = "https://www.baidu.com"}}
                 }
             };
@@ -102,7 +102,7 @@ namespace Sail.Configuration
             {
                 RouteId = "route1",
                 ClusterId = "cluster1",
-                AuthorizationPolicy = "appkey",
+                AuthorizationPolicy = "Secret",
                 Match =
                 {
                     Path = "{**catch-all}"

@@ -34,9 +34,8 @@ namespace Sail.Administration.Controllers
             var result = await _tenantStore.CreateTenantAsync(tenant);
             return Ok(result);
         }
-        
-        [HttpGet]
-        [Route("getTenantById")]
+
+        [HttpGet("{id}")]
         public async Task<IActionResult> FindTenantById(int id)
         {
             var result = await _tenantStore.FindTenantByIdAsync(id);

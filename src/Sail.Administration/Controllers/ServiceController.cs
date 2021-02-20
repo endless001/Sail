@@ -33,9 +33,8 @@ namespace Sail.Administration.Controllers
             var result = await _serviceStore.CreateServiceAsync(service);
             return Ok(result);
         }
-        
-        [HttpGet]
-        [Route("getServiceById")]
+
+        [HttpGet("{id}")]
         public async Task<IActionResult> FindServiceById(int id)
         {
             var result = await _serviceStore.FindServiceByIdAsync(id);
