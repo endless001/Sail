@@ -33,6 +33,13 @@ namespace Sail.Administration.Controllers
             return Ok(result);
         }
 
+        [HttpPut]
+        public async Task<IActionResult> UpdateTenant([FromBody] AccessControl accessControl)
+        {
+            var result = await _accessControlStore.UpdateAccessControlAsync(accessControl);
+            return Ok(result);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> FindAccessControlById(int id)
         {

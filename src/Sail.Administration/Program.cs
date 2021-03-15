@@ -53,7 +53,9 @@ namespace Sail.Administration
              .AddEnvironmentVariables().Build();
 
             var optionsBuilder = new DbContextOptionsBuilder<ConfigurationDbContext>(); 
-            optionsBuilder.UseMySql(configuration.GetValue<string>("ConnectionString"), dbOpts => dbOpts.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name));
+            optionsBuilder.UseMySql(
+                configuration.GetValue<string>("ConnectionString"), 
+                dbOpts => dbOpts.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name));
             var storeOptions = new ConfigurationStoreOptions();
             return new ConfigurationDbContext(optionsBuilder.Options, storeOptions);
         }

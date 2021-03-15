@@ -13,5 +13,4 @@ namespace Sail.RateLimit
         public string HttpVerb { get; set; }
 
     }
-   
 }

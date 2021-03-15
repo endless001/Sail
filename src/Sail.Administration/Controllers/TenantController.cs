@@ -35,6 +35,13 @@ namespace Sail.Administration.Controllers
             return Ok(result);
         }
 
+        [HttpPut]
+        public async Task<IActionResult> UpdateTenant([FromBody] Tenant tenant)
+        {
+            var result = await _tenantStore.UpdateTenantAsync(tenant);
+            return Ok(result);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> FindTenantById(int id)
         {

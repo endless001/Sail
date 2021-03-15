@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Authorization;
 using Sail.Authorization.Secret;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Sail.Authentication.Secret;
+using Sail.RateLimit.Middleware;
 
 
 namespace Sail.Server
@@ -32,13 +33,12 @@ namespace Sail.Server
         public void ConfigureServices(IServiceCollection services)
         {
             var connectionString = Configuration.GetValue<string>("RedisConfig:ConnectionString");
-            services.AddReverseProxy().LoadFromStore(connectionString);
+            services.AddReverseProxy().LoadFromStore(options => { });
 
-            
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("Secret", builder => builder.RequireAuthenticatedUser());
-                options.FallbackPolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+                options.DefaultPolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
             });
 
             services.AddAuthentication(SecretDefaults.AuthenticationScheme)
@@ -57,12 +57,12 @@ namespace Sail.Server
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-
+            //app.UseRateLimiting();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapReverseProxy();
-              
             });
+      
         }
     }
 }

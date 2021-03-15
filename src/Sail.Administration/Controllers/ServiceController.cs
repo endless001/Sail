@@ -34,6 +34,13 @@ namespace Sail.Administration.Controllers
             return Ok(result);
         }
 
+        [HttpPut]
+        public async Task<IActionResult> UpdateService([FromBody] Service service)
+        {
+            var result = await _serviceStore.UpdateServiceAsync(service);
+            return Ok(result);
+        }
+ 
         [HttpGet("{id}")]
         public async Task<IActionResult> FindServiceById(int id)
         {
@@ -46,7 +53,6 @@ namespace Sail.Administration.Controllers
         {
             var result = await _serviceStore.DeleteServiceAsync(id);
             return Ok(result);
-        }
-        
+        }  
     }
 }

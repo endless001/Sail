@@ -20,7 +20,7 @@ namespace Sail.Configuration
         private readonly ConnectionMultiplexer _redis;
         private readonly ILogger<StoreConfigProvider> _logger;
         private readonly IDatabase _database;
-        private volatile  StoreConfig _snapshot;
+        private volatile StoreConfig _snapshot;
         private CancellationTokenSource _changeToken;
 
         public StoreConfigProvider(ILogger<StoreConfigProvider> logger, ConnectionMultiplexer redis)
@@ -43,7 +43,6 @@ namespace Sail.Configuration
         private void UpdateSnapshot()
         {
             StoreConfig snapshot = null;
-
             try
             {
                 snapshot = new StoreConfig();
@@ -95,18 +94,18 @@ namespace Sail.Configuration
             };
             return cluster;
         }
-        
+
         private ProxyRoute CreateRoute()
         {
             var route = new ProxyRoute()
             {
                 RouteId = "route1",
                 ClusterId = "cluster1",
-                AuthorizationPolicy = "Secret",
                 Match =
                 {
                     Path = "{**catch-all}"
                 }
+                
             };
             return route;
         }

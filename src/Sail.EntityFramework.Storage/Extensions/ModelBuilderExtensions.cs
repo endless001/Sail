@@ -21,6 +21,7 @@ namespace Sail.EntityFramework.Storage.Extensions
                 modelBuilder.HasDefaultSchema(storeOptions.DefaultSchema);
             }
 
+      
             modelBuilder.Entity<Tenant>(secret =>
             {
                 secret.ToTable(storeOptions.Tenant);

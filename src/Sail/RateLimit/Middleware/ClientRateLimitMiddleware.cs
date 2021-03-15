@@ -36,7 +36,7 @@ namespace Sail.RateLimit.Middleware
             var rule = options.RateLimitRule;
             if (rule.Limit > 0)
             {
-             
+
             }
 
             await _next.Invoke(httpContext);
