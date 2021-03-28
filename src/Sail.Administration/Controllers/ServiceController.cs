@@ -24,7 +24,7 @@ namespace Sail.Administration.Controllers
         {
             
             var result = await _serviceStore.PageListServiceAsync(pageIndex, pageSize);
-             return Ok(result);
+            return Ok(result);
         }
         
         [HttpPost]

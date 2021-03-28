@@ -21,6 +21,7 @@ namespace Sail.Authentication.Secret
         public static AuthenticationBuilder AddSecret(this AuthenticationBuilder builder, string authenticationScheme, string displayName,
             Action<SecretOptions> configureOptions)
         {
+  
             return builder.AddScheme<SecretOptions, SecretHandler>(authenticationScheme, displayName, configureOptions);
         }
     }

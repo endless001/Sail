@@ -72,6 +72,10 @@ namespace Sail.EntityFramework.Storage.Stores
             return result > 0;
         }
 
-       
+        public async Task<Tenant> VerificationSecretAsync(string secret)
+        {
+            var entity = await Context.Tenants.FirstOrDefaultAsync(t => t.Secret == secret);
+            return entity.ToModel();
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Sail.Storage.Stores;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,18 +14,25 @@ namespace Sail.Authentication.Secret
 {
     public class SecretHandler : AuthenticationHandler<SecretOptions>
     {
+        private readonly ITenantStore _tenantStore;
         public SecretHandler(IOptionsMonitor<SecretOptions> options, ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock)
             : base(options, logger, encoder, clock)
         {
         }
-        protected override Task<AuthenticateResult> HandleAuthenticateAsync()
+        protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
         {
 
             var secret = Request.Headers[Options.Secret];
 
             if (string.IsNullOrEmpty(secret))
             {
-                return Task.FromResult(AuthenticateResult.NoResult());
+                return AuthenticateResult.NoResult();
+            }
+            var tenant = await _tenantStore.VerificationSecretAsync(secret);
+
+            if (tenant == null)
+            {
+                return AuthenticateResult.NoResult();
             }
 
             var claims = new List<Claim>()
@@ -38,7 +46,7 @@ namespace Sail.Authentication.Secret
                 principal,
                 Scheme.Name
             );
-            return Task.FromResult(AuthenticateResult.Success(ticket));
+            return AuthenticateResult.Success(ticket);
         }
     }
 }
