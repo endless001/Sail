@@ -57,7 +57,6 @@ namespace Sail.Server
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-            //app.UseRateLimiting();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapReverseProxy();
