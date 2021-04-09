@@ -49,7 +49,7 @@ namespace Sail.Administration
                     b.UseMySql(connectionString, dbOpts => dbOpts.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name));
                 };
             });
-           
+          
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
