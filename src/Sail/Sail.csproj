@@ -8,8 +8,10 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
-    <PackageReference Include="Microsoft.ReverseProxy" Version="1.0.0-preview.8.21065.1" />
+    <PackageReference Include="prometheus-net" Version="4.1.1" />
     <PackageReference Include="StackExchange.Redis" Version="2.2.4" />
+    <PackageReference Include="Yarp.ReverseProxy" Version="1.0.0-preview.11.21223.5" />
+    <PackageReference Include="Yarp.ReverseProxy.Telemetry.Consumption" Version="1.0.0-preview.11.21223.5" />
   </ItemGroup>
 
   <ItemGroup>

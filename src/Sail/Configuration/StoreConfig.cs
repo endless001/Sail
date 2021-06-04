@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Extensions.Primitives;
-using Microsoft.ReverseProxy.Service;
-using Microsoft.ReverseProxy.Abstractions;
+using Yarp.ReverseProxy.Abstractions;
+using Yarp.ReverseProxy.Service;
 
 namespace Sail.Configuration
 {

@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Primitives;
-using Microsoft.ReverseProxy.Abstractions;
-using Microsoft.ReverseProxy.Abstractions.ClusterDiscovery.Contract;
-using Microsoft.ReverseProxy.Service;
 using StackExchange.Redis;
+using Yarp.ReverseProxy.Abstractions;
+using Yarp.ReverseProxy.Abstractions.ClusterDiscovery.Contract;
+using Yarp.ReverseProxy.Service;
 
 namespace Sail.Configuration
 {
@@ -88,8 +88,7 @@ namespace Sail.Configuration
                 HttpRequest = { },
                 Destinations =
                 {
-                    {"destination1", new Destination() {Address = "https://www.cnblogs.com"}},
-                    {"destination2", new Destination() {Address = "https://www.baidu.com"}}
+          
                 }
             };
             return cluster;

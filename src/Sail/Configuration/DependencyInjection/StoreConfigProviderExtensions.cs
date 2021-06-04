@@ -2,9 +2,9 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Microsoft.ReverseProxy.Service;
 using StackExchange.Redis;
 using System;
+using Yarp.ReverseProxy.Service;
 
 namespace Sail.Configuration.DependencyInjection
 {
