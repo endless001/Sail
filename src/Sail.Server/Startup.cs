@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -25,7 +26,7 @@ namespace Sail.Server
         {
             Configuration = configuration;
         }
-        
+
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -38,11 +39,19 @@ namespace Sail.Server
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("Secret", builder => builder.RequireAuthenticatedUser());
+                options.AddPolicy("Bearer", builder => builder.RequireAuthenticatedUser());
                 options.DefaultPolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+
+
             });
 
             services.AddAuthentication(SecretDefaults.AuthenticationScheme)
                    .AddSecret();
+
+            services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
+              .AddIdentityServerAuthentication(options =>
+              {
+              });
 
         }
 
@@ -61,7 +70,7 @@ namespace Sail.Server
             {
                 endpoints.MapReverseProxy();
             });
-      
+
         }
     }
 }
