@@ -34,8 +34,8 @@ namespace Sail.Administration.Controllers
             return Ok(result);
         }
 
-        [HttpPut]
-        public async Task<IActionResult> UpdateService([FromBody] Service service)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateService([FromQuery] int id,[FromBody] Service service)
         {
             var result = await _serviceStore.UpdateServiceAsync(service);
             return Ok(result);

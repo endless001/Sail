@@ -1,0 +1,13 @@
+version: '3.9'
+
+services:
+  sail-server:
+    image: sail.server
+    build:
+      context: .
+      dockerfile: src/Sail.Server/Dockerfile
+  sail-administration:
+    image: sail.administration
+    build:
+      context: .
+      dockerfile: src/Sail.Administration/Dockerfile

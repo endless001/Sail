@@ -13,13 +13,18 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sail.Storage", "src\Sail.St
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sail.Administration", "src\Sail.Administration\Sail.Administration.csproj", "{D1A51644-47B7-4A01-99BB-BD12C11E83D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sail.Server", "src\Sail.Server\Sail.Server.csproj", "{49AEFA42-9156-4163-BC38-3715DEF2C13E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sail.Server", "src\Sail.Server\Sail.Server.csproj", "{49AEFA42-9156-4163-BC38-3715DEF2C13E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{07CE84C2-5462-4DE8-87BE-87AF1C166D5D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sail.EntityFramework.Storage", "Sail.EntityFramework.Storage", "{57C3D59F-9CB3-491E-A3D7-3D2CF7247E58}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sail.EntityFramework.Storage.IntegrationTests", "test\Sail.EntityFramework.Storage\Sail.EntityFramework.Storage.IntegrationTests\Sail.EntityFramework.Storage.IntegrationTests.csproj", "{235D0BF6-E9B0-4B67-948B-AC2E119FB3AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sail.EntityFramework.Storage.IntegrationTests", "test\Sail.EntityFramework.Storage\Sail.EntityFramework.Storage.IntegrationTests\Sail.EntityFramework.Storage.IntegrationTests.csproj", "{235D0BF6-E9B0-4B67-948B-AC2E119FB3AF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{239FDBDE-7AF9-43FE-9D90-3711325B55EC}"
+	ProjectSection(SolutionItems) = preProject
+		NuGet.config = NuGet.config
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
