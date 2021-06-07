@@ -1,7 +1,7 @@
 namespace Sail.Authentication.IdentityServer
 {
-  public static class IdentityServerAuthenticationExtensions
-  {
+    public static class IdentityServerAuthenticationExtensions
+    {
 
-  }
+    }
 }
