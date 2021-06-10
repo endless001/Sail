@@ -9,11 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\OperatorFramework\src\Controller\Microsoft.Kubernetes.Controller.csproj" />
+    <ProjectReference Include="..\Sail.Kubernetes.Protocol\Sail.Kubernetes.Protocol.csproj" />
   </ItemGroup>
 
 </Project>
