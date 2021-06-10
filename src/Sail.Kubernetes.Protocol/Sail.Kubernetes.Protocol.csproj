@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Yarp.ReverseProxy.Telemetry.Consumption" Version="1.0.0-preview.11.21223.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OperatorFramework\src\Controller\Microsoft.Kubernetes.Controller.csproj" />
+  </ItemGroup>
+
+</Project>
