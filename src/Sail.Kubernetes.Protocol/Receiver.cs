@@ -47,7 +47,7 @@ namespace Sail.Kubernetes.Protocol
             {
                 await _limiter.WaitAsync(cancellationToken).ConfigureAwait(false);
 
-                Logger.LogInformation("Connecting with {ControllerUrl}", _options.ControllerUrl.ToString());
+                Logger.LogInformation($"Connecting with { _options.ControllerUrl.ToString()}");
 
                 try
                 {
@@ -63,7 +63,7 @@ namespace Sail.Kubernetes.Protocol
                         }
 
                         var message = System.Text.Json.JsonSerializer.Deserialize<Message>(json);
-                        Logger.LogInformation("Received {MessageType} for {MessageKey}", message.MessageType, message.Key);
+                        Logger.LogInformation($"Received {message.MessageType} for { message.Key}");
 
                         Logger.LogInformation(json);
                         Logger.LogInformation(message.MessageType.ToString());
@@ -76,7 +76,7 @@ namespace Sail.Kubernetes.Protocol
                 }
                 catch (Exception ex)
                 {
-                    Logger.LogInformation("Stream ended: {Message}", ex.Message);
+                    Logger.LogInformation($"Stream ended: { ex.Message}");
                 }
             }           
         }

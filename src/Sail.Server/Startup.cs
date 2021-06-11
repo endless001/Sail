@@ -45,6 +45,7 @@ namespace Sail.Server
 
             });
 
+      
             services.AddAuthentication(SecretDefaults.AuthenticationScheme)
                    .AddSecret();
 

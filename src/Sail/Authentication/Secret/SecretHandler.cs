@@ -15,9 +15,10 @@ namespace Sail.Authentication.Secret
     public class SecretHandler : AuthenticationHandler<SecretOptions>
     {
         private readonly ITenantStore _tenantStore;
-        public SecretHandler(IOptionsMonitor<SecretOptions> options, ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock)
+        public SecretHandler(IOptionsMonitor<SecretOptions> options, ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock, ITenantStore tenantStore)
             : base(options, logger, encoder, clock)
         {
+            _tenantStore = tenantStore;
         }
         protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
         {
