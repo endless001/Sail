@@ -54,6 +54,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yarp.ReverseProxy", "src\Ya
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yarp.ReverseProxy.Telemetry.Consumption", "src\Yarp\src\ReverseProxy.TelemetryConsumption\Yarp.ReverseProxy.Telemetry.Consumption.csproj", "{FBEFF7B5-5A4D-46E3-9DEA-670DC0008061}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ingress", "Ingress", "{961D9A06-902F-47F4-A148-3339A965135E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E1F6EAD4-2F6C-4B00-BE98-180355502F94}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sail.Kubernetes.Ingress", "src\Ingress\src\Sail.Kubernetes.Ingress\Sail.Kubernetes.Ingress.csproj", "{0BB143F7-EC58-4275-9A36-64B7B0149468}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -124,6 +130,10 @@ Global
 		{FBEFF7B5-5A4D-46E3-9DEA-670DC0008061}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBEFF7B5-5A4D-46E3-9DEA-670DC0008061}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBEFF7B5-5A4D-46E3-9DEA-670DC0008061}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BB143F7-EC58-4275-9A36-64B7B0149468}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BB143F7-EC58-4275-9A36-64B7B0149468}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BB143F7-EC58-4275-9A36-64B7B0149468}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BB143F7-EC58-4275-9A36-64B7B0149468}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -150,6 +160,9 @@ Global
 		{6B942C2C-AF21-4A0B-B7A1-4EF623D87FD4} = {D12FA4B0-951D-45DF-95BD-80A8849C5F88}
 		{6345789D-D8EE-4516-946B-CD1D37739298} = {6B942C2C-AF21-4A0B-B7A1-4EF623D87FD4}
 		{FBEFF7B5-5A4D-46E3-9DEA-670DC0008061} = {6B942C2C-AF21-4A0B-B7A1-4EF623D87FD4}
+		{961D9A06-902F-47F4-A148-3339A965135E} = {76E76B30-9B53-48AB-8E86-81D55A168438}
+		{E1F6EAD4-2F6C-4B00-BE98-180355502F94} = {961D9A06-902F-47F4-A148-3339A965135E}
+		{0BB143F7-EC58-4275-9A36-64B7B0149468} = {E1F6EAD4-2F6C-4B00-BE98-180355502F94}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {69E1B1AC-AFEB-4D87-BA73-6CD610891684}
