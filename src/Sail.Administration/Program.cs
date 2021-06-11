@@ -6,13 +6,9 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Sail.EntityFramework.DbContexts;
-using Sail.EntityFramework.Storage.Options;
 using Serilog;
 
 namespace Sail.Administration
@@ -42,22 +38,5 @@ namespace Sail.Administration
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddEnvironmentVariables().Build();
         
-    }
-    public class ConfigurationDbContextFactory : IDesignTimeDbContextFactory<ConfigurationDbContext>
-    {
-        public ConfigurationDbContext CreateDbContext(string[] args)
-        {
-            var configuration = new ConfigurationBuilder()
-             .SetBasePath(Directory.GetCurrentDirectory())
-             .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-             .AddEnvironmentVariables().Build();
-
-            var optionsBuilder = new DbContextOptionsBuilder<ConfigurationDbContext>(); 
-            optionsBuilder.UseMySql(
-                configuration.GetValue<string>("ConnectionString"), 
-                dbOpts => dbOpts.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name));
-            var storeOptions = new ConfigurationStoreOptions();
-            return new ConfigurationDbContext(optionsBuilder.Options, storeOptions);
-        }
     }
 }
