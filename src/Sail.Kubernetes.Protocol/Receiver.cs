@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
@@ -62,7 +63,7 @@ namespace Sail.Kubernetes.Protocol
                             break;
                         }
 
-                        var message = System.Text.Json.JsonSerializer.Deserialize<Message>(json);
+                        var message = JsonSerializer.Deserialize<Message>(json);
                         Logger.LogInformation($"Received {message.MessageType} for { message.Key}");
 
                         Logger.LogInformation(json);

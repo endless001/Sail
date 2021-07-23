@@ -20,19 +20,14 @@ namespace Sail.Configuration.DependencyInjection
 
             builder.Services.AddOptions();
             builder.Services.Configure(setupAction);
-            builder.Services.AddSingleton<ConnectionMultiplexer>(sp =>
+            builder.Services.AddSingleton(sp =>
             {
                 var configuration = ConfigurationOptions.Parse("47.103.25.179:6379", true);
                 configuration.ResolveDns = true;
                 return ConnectionMultiplexer.Connect(configuration);
             });
             
-            builder.Services.AddSingleton<IProxyConfigProvider>(sp =>
-            {
-                var logger = sp.GetService<ILogger<StoreConfigProvider>>();
-                var connection = sp.GetService<ConnectionMultiplexer>();
-                return new StoreConfigProvider(logger, connection);
-            });
+            builder.Services.AddSingleton<IProxyConfigProvider, StoreConfigProvider>();
            
             return builder;
         }
