@@ -40,6 +40,8 @@ namespace Yarp.ReverseProxy.Configuration
                 && UseDefaultCredentials == other.UseDefaultCredentials;
         }
 
+
+
         /// <inheritdoc/>
         public override int GetHashCode()
         {
