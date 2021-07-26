@@ -8,11 +8,11 @@ using Sail.Plugin.Abstractions;
 
 namespace Sail.Plugin.AspNetCore
 {
-  public static class ServiceCollectionExtensions
-  {
-    public static IServiceCollection AddPlugin(this IServiceCollection services, Action<PluginOptions> configure = null)
+    public static class ServiceCollectionExtensions
     {
-      return services;
+        public static IServiceCollection AddPlugin(this IServiceCollection services, Action<PluginOptions> configure = null)
+        {
+            return services;
+        }
     }
-  }
 }

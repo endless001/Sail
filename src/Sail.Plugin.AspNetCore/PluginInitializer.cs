@@ -8,37 +8,37 @@ using Sail.Plugin.Abstractions;
 
 namespace Sail.Plugin.AspNetCore
 {
-  public class PluginInitializer:IHostedService
-  {
-    private readonly IEnumerable<IPlugin> _plugins;
-    private readonly ILogger<PluginInitializer> _logger;
-
-    public PluginInitializer(IEnumerable<IPlugin> plugins,ILogger<PluginInitializer> logger)
+    public class PluginInitializer : IHostedService
     {
-      _plugins = plugins;
-      _logger = logger;
-    }
+        private readonly IEnumerable<IPlugin> _plugins;
+        private readonly ILogger<PluginInitializer> _logger;
 
-    public async Task StartAsync(CancellationToken cancellationToken)
-    {
-      try
-      {
-        foreach (var plugin in _plugins)
+        public PluginInitializer(IEnumerable<IPlugin> plugins, ILogger<PluginInitializer> logger)
         {
-          await plugin.Initialize();
-
+            _plugins = plugins;
+            _logger = logger;
         }
-      }
-      catch (Exception e)
-      {
-        Console.WriteLine(e);
-        throw;
-      }
-    }
 
-    public Task StopAsync(CancellationToken cancellationToken)
-    {
-      return  Task.CompletedTask;
+        public async Task StartAsync(CancellationToken cancellationToken)
+        {
+            try
+            {
+                foreach (var plugin in _plugins)
+                {
+                    await plugin.Initialize();
+
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
+        public Task StopAsync(CancellationToken cancellationToken)
+        {
+            return Task.CompletedTask;
+        }
     }
-  }
 }
