@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sail.Plugin
+namespace Sail.Plugin.Context
 {
-    class PluginProvider
+    public enum UseHostApplicationAssembliesEnum
     {
+        Never,
+        Selected,
+        Always
     }
 }
