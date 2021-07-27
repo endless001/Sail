@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Reflection;
 using Sail.Plugin.TypeFinding;
 
@@ -6,15 +7,33 @@ namespace Sail.Plugin.Context
 {
     public class MetadataTypeFindingContext : ITypeFindingContext
     {
+        private readonly MetadataLoadContext _metadataLoadContext;
+
+        public MetadataTypeFindingContext(MetadataLoadContext metadataLoadContext)
+        {
+            _metadataLoadContext = metadataLoadContext;
+        }
 
         public Assembly FindAssembly(string assemblyName)
         {
-            throw new NotImplementedException();
+            var result = _metadataLoadContext.LoadFromAssemblyName(assemblyName);
+            return result;
         }
 
         public Type FindType(Type type)
         {
-            throw new NotImplementedException();
+            var assemblyName = type.Assembly.GetName();
+            var assemblies = _metadataLoadContext.GetAssemblies();
+            var assembly = assemblies.FirstOrDefault(x => string.Equals(x.FullName, assemblyName.FullName));
+
+            if (assembly == null)
+            {
+                assembly = _metadataLoadContext.LoadFromAssemblyName(assemblyName);
+            }
+
+            var result = assembly.GetType(type.FullName);
+
+            return result;
         }
     }
 }
