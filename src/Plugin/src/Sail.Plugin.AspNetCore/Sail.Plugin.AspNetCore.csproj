@@ -6,6 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
@@ -13,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Sail.Plugin.Abstractions.as\Sail.Plugin.Abstractions.csproj" />
+    <ProjectReference Include="..\Sail.Plugin.Configuration\Sail.Plugin.Configuration.csproj" />
   </ItemGroup>
 
 </Project>
