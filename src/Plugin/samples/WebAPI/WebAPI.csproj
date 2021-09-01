@@ -9,8 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Sail.Plugin.AspNetCore\Sail.Plugin.AspNetCore.csproj" />
     <ProjectReference Include="..\..\src\Sail.Plugin\Sail.Plugin.csproj" />
-    <ProjectReference Include="..\WebAPIPlugin\WebAPIPlugin.csproj" />
   </ItemGroup>
 
 </Project>

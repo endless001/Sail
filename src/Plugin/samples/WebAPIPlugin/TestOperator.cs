@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace WebAPIPlugin
 {
-    public class ThumbnailOperator : IOperator
+    public class TestOperator : IOperator
     {
         public async Task Run(HttpContext context)
         {
-            await context.Response.WriteAsync("Thumbnail test");
+            await context.Response.WriteAsync("test1");
         }
     }
 }

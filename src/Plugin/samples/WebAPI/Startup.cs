@@ -14,6 +14,7 @@ using Microsoft.OpenApi.Models;
 using Sail.Plugin.AspNetCore;
 using Sail.Plugin.Providers;
 using Sail.Pulgin.AspNetCore;
+using Sail.Pulgin.AspNetCore.Middleware;
 
 namespace WebAPI
 {
@@ -29,7 +30,7 @@ namespace WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var folderPluginCatalog = new FolderPluginProviders(@"..\Shared\Weikio.PluginFramework.Samples.SharedPlugins\bin\debug\netcoreapp3.1", type =>
+            var folderPluginCatalog = new FolderPluginProviders(@"..\WebAPIPlugin\bin\debug\plugins", type =>
             {
                 type.Implements<IOperator>();
             });
@@ -38,7 +39,7 @@ namespace WebAPI
                 .AddPluginCatalog(folderPluginCatalog)
                 .AddPluginType<IOperator>(configureDefault: option =>
                 {
-                  
+
                 });
 
 
@@ -64,7 +65,7 @@ namespace WebAPI
             app.UseRouting();
 
             app.UseAuthorization();
-
+            app.UsePlugin();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
