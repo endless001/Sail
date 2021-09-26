@@ -102,7 +102,7 @@ namespace Sail.Configuration
                 ClusterId = "cluster1",
                 Match =
                 {
-                    Path = "{**catch-all}"
+                   
                 }
                 
             };

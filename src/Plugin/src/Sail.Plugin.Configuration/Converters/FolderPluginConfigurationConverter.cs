@@ -36,5 +36,4 @@ namespace Sail.Plugin.Configuration.Converters
             public List<string> SearchPatterns { get; set; }
         }
     }
-
 }

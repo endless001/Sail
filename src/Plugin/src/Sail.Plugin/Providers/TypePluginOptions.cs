@@ -11,6 +11,7 @@ namespace Sail.Plugin.Providers
     public class TypePluginOptions
     {
         public PluginNameOptions PluginNameOptions { get; set; } = Defaults.PluginNameOptions;
+
         [Obsolete("Please use TypeFinderOptions. This will be removed in a future release.")]
         public Dictionary<string, TypeFinderCriteria> TypeFinderCriterias = new Dictionary<string, TypeFinderCriteria>();
         public TypeFinderOptions TypeFinderOptions { get; set; } = new TypeFinderOptions();
